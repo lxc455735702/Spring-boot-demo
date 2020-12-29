@@ -1,1 +1,29 @@
-
+server:
+  port: 8081
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: 123456
+    virtual-host: /test
+    publisher-confirm-type: CORRELATED
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        retry:
+          enabled: true
+          max-attempts: 10
+          initial-interval: 1000
+          max-interval: 1000
+          multiplier: 1.0
+          prefetch: 1
+      direct:
+        acknowledge-mode: manual
+        retry:
+          enabled: true
+          max-attempts: 5
+          initial-interval: 1000
+          max-interval: 1000
+          multiplier: 1.0
